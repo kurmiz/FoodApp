@@ -1,7 +1,7 @@
-com\quickbite\model\CartItem.class
 com\quickbite\model\DeliveryAddress.class
 com\quickbite\service\CartService.class
-com\quickbite\model\FoodItem.class
 com\quickbite\model\Order.class
 com\quickbite\util\ConsoleLogger.class
+com\quickbite\model\CartItem.class
+com\quickbite\model\FoodItem.class
 com\quickbite\view\MainLayout.class

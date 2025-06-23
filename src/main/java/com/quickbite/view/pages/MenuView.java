@@ -101,13 +101,14 @@ public class MenuView extends VerticalLayout {
     private void createMenuContainer() {
         menuContainer.addClassNames(
             LumoUtility.Display.GRID,
-            LumoUtility.Gap.MEDIUM,
-            LumoUtility.Padding.MEDIUM
+            LumoUtility.Gap.LARGE,
+            LumoUtility.Padding.LARGE
         );
         menuContainer.getStyle()
-            .set("grid-template-columns", "repeat(auto-fill, minmax(300px, 1fr))")
-            .set("width", "100%");
-        
+            .set("grid-template-columns", "repeat(auto-fill, minmax(350px, 1fr))")
+            .set("width", "100%")
+            .set("background", "#f8f9fa");
+
         add(menuContainer);
     }
 

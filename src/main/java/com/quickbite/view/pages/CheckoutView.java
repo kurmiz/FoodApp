@@ -40,13 +40,17 @@ public class CheckoutView extends VerticalLayout implements BeforeEnterObserver 
 
     private final CartService cartService;
     private final OrderService orderService;
+    private final DeliveryService deliveryService;
     private Grid<CartItem> orderSummaryGrid;
     private Div totalSection;
+    private Div deliverySection;
+    private DeliveryAddress selectedAddress;
 
     @Autowired
-    public CheckoutView(CartService cartService, OrderService orderService) {
+    public CheckoutView(CartService cartService, OrderService orderService, DeliveryService deliveryService) {
         this.cartService = cartService;
         this.orderService = orderService;
+        this.deliveryService = deliveryService;
         
         setSizeFull();
         setPadding(true);
