@@ -77,7 +77,11 @@ public class MenuManagementView extends VerticalLayout {
         refreshButton.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
         refreshButton.addClickListener(e -> refreshGrid());
 
-        buttonLayout.add(addItemButton, refreshButton);
+        Button addDemoDataButton = new Button("Add Demo Data", new Icon(VaadinIcon.DATABASE));
+        addDemoDataButton.addThemeVariants(ButtonVariant.LUMO_SUCCESS);
+        addDemoDataButton.addClickListener(e -> addDemoData());
+
+        buttonLayout.add(addItemButton, addDemoDataButton, refreshButton);
         add(buttonLayout);
     }
 
@@ -308,5 +312,65 @@ public class MenuManagementView extends VerticalLayout {
 
     private void refreshGrid() {
         menuGrid.setItems(menuService.getAllMenuItems());
+    }
+
+    private void addDemoData() {
+        try {
+            // Add professional demo food items with enhanced features
+            addDemoFoodItem("Margherita Pizza", "Fresh mozzarella, tomatoes, and basil on thin crust", 13.99, "Main Courses",
+                           true, false, false, "20-25 mins", true, 15.99, "Italian, Classic, Cheese");
+
+            addDemoFoodItem("Spicy Chicken Wings", "Crispy wings tossed in our signature hot sauce", 12.99, "Appetizers",
+                           false, false, true, "15-20 mins", true, 0, "Spicy, Chicken, Wings");
+
+            addDemoFoodItem("Vegan Buddha Bowl", "Quinoa, roasted vegetables, and tahini dressing", 14.99, "Main Courses",
+                           true, true, false, "10-15 mins", false, 0, "Healthy, Vegan, Bowl");
+
+            addDemoFoodItem("Chocolate Lava Cake", "Warm chocolate cake with molten center", 7.99, "Desserts",
+                           true, false, false, "12-15 mins", true, 9.99, "Dessert, Chocolate, Sweet");
+
+            addDemoFoodItem("Caesar Salad", "Crisp romaine lettuce with parmesan and croutons", 9.99, "Salads",
+                           true, false, false, "5-10 mins", false, 0, "Fresh, Salad, Light");
+
+            addDemoFoodItem("Beef Burger Deluxe", "Juicy beef patty with premium toppings", 16.99, "Main Courses",
+                           false, false, false, "18-22 mins", true, 19.99, "Burger, Beef, Premium");
+
+            refreshGrid();
+
+            Notification notification = Notification.show(
+                "Demo data added successfully! Check out the professional food cards in the menu.",
+                5000,
+                Notification.Position.TOP_END
+            );
+            notification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
+
+        } catch (Exception e) {
+            Notification notification = Notification.show(
+                "Error adding demo data: " + e.getMessage(),
+                5000,
+                Notification.Position.TOP_END
+            );
+            notification.addThemeVariants(NotificationVariant.LUMO_ERROR);
+        }
+    }
+
+    private void addDemoFoodItem(String name, String description, double price, String category,
+                                boolean isVegetarian, boolean isVegan, boolean isSpicy,
+                                String prepTime, boolean isPopular, double originalPrice, String tags) {
+        FoodItem item = menuService.addMenuItem(name, description, price, category);
+
+        // Set enhanced properties
+        item.setVegetarian(isVegetarian);
+        item.setVegan(isVegan);
+        item.setSpicy(isSpicy);
+        item.setPreparationTime(prepTime);
+        item.setPopular(isPopular);
+        item.setRating(3.5 + Math.random() * 1.5); // Random rating between 3.5-5.0
+        item.setReviewCount((int)(Math.random() * 200) + 10); // Random reviews 10-210
+        item.setTags(tags);
+
+        if (originalPrice > 0) {
+            item.setOriginalPrice(originalPrice);
+        }
     }
 }
