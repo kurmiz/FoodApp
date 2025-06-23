@@ -35,30 +35,48 @@ public class HomeView extends VerticalLayout {
     }
 
     private void createWelcomeSection() {
-        // Main welcome section
+        // Professional welcome section with red gradient
         Div welcomeSection = new Div();
         welcomeSection.addClassNames(
-            LumoUtility.Background.CONTRAST_5,
             LumoUtility.BorderRadius.LARGE,
             LumoUtility.Padding.XLARGE,
             LumoUtility.Margin.LARGE
         );
-        welcomeSection.setWidth("80%");
-        welcomeSection.getStyle().set("text-align", "center");
+        welcomeSection.setWidth("90%");
+        welcomeSection.getStyle()
+            .set("text-align", "center")
+            .set("background", "linear-gradient(135deg, #e23744 0%, #ff6b35 100%)")
+            .set("color", "white")
+            .set("box-shadow", "0 8px 32px rgba(226, 55, 68, 0.3)")
+            .set("position", "relative")
+            .set("overflow", "hidden");
+
+        // Add shimmer effect
+        welcomeSection.getElement().getStyle()
+            .set("background-size", "200% 200%")
+            .set("animation", "gradient-shift 3s ease infinite");
 
         H1 title = new H1("🍕 Welcome to QuickBite!");
         title.addClassNames(
             LumoUtility.FontSize.XXXLARGE,
-            LumoUtility.TextColor.PRIMARY,
             LumoUtility.Margin.Bottom.MEDIUM
         );
+        title.getStyle()
+            .set("color", "white")
+            .set("font-weight", "700")
+            .set("text-shadow", "2px 2px 4px rgba(0,0,0,0.3)")
+            .set("margin", "0 0 20px 0");
 
-        Paragraph subtitle = new Paragraph("Your favorite food, delivered fast and fresh!");
+        Paragraph subtitle = new Paragraph("🎨 PROFESSIONAL UI • Your favorite food, delivered fast and fresh!");
         subtitle.addClassNames(
             LumoUtility.FontSize.LARGE,
-            LumoUtility.TextColor.SECONDARY,
             LumoUtility.Margin.Bottom.LARGE
         );
+        subtitle.getStyle()
+            .set("color", "rgba(255,255,255,0.95)")
+            .set("font-weight", "500")
+            .set("margin", "0")
+            .set("line-height", "1.5");
 
         welcomeSection.add(title, subtitle);
         add(welcomeSection);
@@ -130,55 +148,77 @@ public class HomeView extends VerticalLayout {
 
     private Div createNavigationCard(VaadinIcon iconType, String title, String description,
                                     String theme, Runnable clickAction) {
+        // Professional navigation card
         Div card = new Div();
         card.addClassNames(
-            LumoUtility.Background.CONTRAST_5,
             LumoUtility.BorderRadius.LARGE,
             LumoUtility.Padding.LARGE,
             LumoUtility.BoxShadow.SMALL
         );
         card.getStyle()
             .set("cursor", "pointer")
-            .set("transition", "all 0.2s ease")
-            .set("text-align", "center");
+            .set("transition", "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)")
+            .set("text-align", "center")
+            .set("background", "linear-gradient(135deg, #ffffff 0%, #fff8f8 100%)")
+            .set("border", "2px solid transparent")
+            .set("position", "relative")
+            .set("overflow", "hidden");
 
-        // Add hover effects
+        // Add red accent bar at top
+        Div accentBar = new Div();
+        accentBar.getStyle()
+            .set("position", "absolute")
+            .set("top", "0")
+            .set("left", "0")
+            .set("right", "0")
+            .set("height", "4px")
+            .set("background", "linear-gradient(135deg, #e23744 0%, #ff6b35 100%)");
+        card.add(accentBar);
+
+        // Add professional hover effects
         card.getElement().addEventListener("mouseenter", e -> {
-            card.getStyle().set("transform", "translateY(-4px)");
-            card.addClassNames(LumoUtility.BoxShadow.MEDIUM);
+            card.getStyle()
+                .set("transform", "translateY(-8px) scale(1.02)")
+                .set("box-shadow", "0 12px 40px rgba(226, 55, 68, 0.2)")
+                .set("border-color", "#e23744");
         });
         card.getElement().addEventListener("mouseleave", e -> {
-            card.getStyle().remove("transform");
-            card.removeClassNames(LumoUtility.BoxShadow.MEDIUM);
+            card.getStyle()
+                .remove("transform")
+                .set("box-shadow", "0 4px 20px rgba(226, 55, 68, 0.1)")
+                .set("border-color", "transparent");
         });
 
         card.addClickListener(e -> clickAction.run());
 
         Icon icon = new Icon(iconType);
         icon.addClassNames(LumoUtility.IconSize.LARGE);
-        icon.getStyle().set("font-size", "3rem").set("margin-bottom", "1rem");
+        icon.getStyle()
+            .set("font-size", "3.5rem")
+            .set("margin-bottom", "1.5rem")
+            .set("margin-top", "1rem")
+            .set("color", "#e23744")
+            .set("transition", "all 0.3s ease");
 
-        // Apply theme colors
-        switch (theme) {
-            case "primary":
-                icon.addClassNames(LumoUtility.TextColor.PRIMARY);
-                break;
-            case "success":
-                icon.addClassNames(LumoUtility.TextColor.SUCCESS);
-                break;
-            case "contrast":
-                icon.addClassNames(LumoUtility.TextColor.TERTIARY);
-                break;
-            case "tertiary":
-                icon.addClassNames(LumoUtility.TextColor.SECONDARY);
-                break;
-        }
+        // Add icon hover effect
+        card.getElement().addEventListener("mouseenter", e ->
+            icon.getStyle().set("transform", "scale(1.1)").set("color", "#cb1b28"));
+        card.getElement().addEventListener("mouseleave", e ->
+            icon.getStyle().remove("transform").set("color", "#e23744"));
 
         H3 cardTitle = new H3(title);
         cardTitle.addClassNames(LumoUtility.FontSize.LARGE, LumoUtility.Margin.Vertical.SMALL);
+        cardTitle.getStyle()
+            .set("color", "#2c3e50")
+            .set("font-weight", "600")
+            .set("margin", "0 0 12px 0");
 
         Paragraph cardDescription = new Paragraph(description);
-        cardDescription.addClassNames(LumoUtility.TextColor.SECONDARY, LumoUtility.FontSize.SMALL);
+        cardDescription.addClassNames(LumoUtility.FontSize.SMALL);
+        cardDescription.getStyle()
+            .set("color", "#6c757d")
+            .set("line-height", "1.5")
+            .set("margin", "0");
 
         card.add(icon, cardTitle, cardDescription);
         return card;

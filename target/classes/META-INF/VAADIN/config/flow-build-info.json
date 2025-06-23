@@ -1,0 +1,16 @@
+{
+  "productionMode": false,
+  "eagerServerLoad": false,
+  "npmFolder": "C:\\Users\\mishr\\Desktop\\FoodApp",
+  "node.version": "v20.9.0",
+  "node.download.root": "https://nodejs.org/dist/",
+  "frontendFolder": "C:\\Users\\mishr\\Desktop\\FoodApp\\frontend",
+  "connect.javaSourceFolder": "C:\\Users\\mishr\\Desktop\\FoodApp\\src\\main\\java",
+  "javaResourceFolder": "C:\\Users\\mishr\\Desktop\\FoodApp\\src\\main\\resources",
+  "connect.applicationProperties": "C:\\Users\\mishr\\Desktop\\FoodApp\\src\\main\\resources\\application.properties",
+  "connect.openApiFile": "C:\\Users\\mishr\\Desktop\\FoodApp\\target\\generated-resources\\openapi.json",
+  "project.frontend.generated": "C:\\Users\\mishr\\Desktop\\FoodApp\\frontend\\generated",
+  "pnpm.enable": false,
+  "require.home.node": false,
+  "build.folder": "target"
+}

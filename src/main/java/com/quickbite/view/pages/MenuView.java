@@ -50,20 +50,60 @@ public class MenuView extends VerticalLayout {
         setPadding(true);
         setSpacing(true);
 
+        // Add professional transformation banner
+        createTransformationBanner();
+
         createHeader();
         createFilters();
         createMenuContainer();
         loadMenuItems();
     }
 
+    private void createTransformationBanner() {
+        Div banner = new Div();
+        banner.getStyle()
+            .set("background", "linear-gradient(135deg, #e23744 0%, #ff6b35 100%)")
+            .set("color", "white")
+            .set("padding", "20px")
+            .set("text-align", "center")
+            .set("font-size", "1.5rem")
+            .set("font-weight", "bold")
+            .set("margin-bottom", "20px")
+            .set("border-radius", "10px")
+            .set("box-shadow", "0 4px 15px rgba(226, 55, 68, 0.3)");
+
+        banner.setText("🎨 PROFESSIONAL UI TRANSFORMATION ACTIVE - MODERN STYLE MENU");
+        add(banner);
+    }
+
     private void createHeader() {
-        H1 title = new H1("🍽️ Our Menu");
-        title.addClassNames(LumoUtility.TextColor.PRIMARY, LumoUtility.Margin.Bottom.MEDIUM);
-        
-        Paragraph subtitle = new Paragraph("Discover our delicious selection of fresh, made-to-order dishes");
-        subtitle.addClassNames(LumoUtility.TextColor.SECONDARY);
-        
-        add(title, subtitle);
+        // Create professional header with gradient background
+        Div headerSection = new Div();
+        headerSection.getStyle()
+            .set("background", "linear-gradient(135deg, #e23744 0%, #ff6b35 100%)")
+            .set("color", "white")
+            .set("padding", "30px")
+            .set("border-radius", "15px")
+            .set("margin-bottom", "30px")
+            .set("box-shadow", "0 8px 32px rgba(226, 55, 68, 0.3)");
+
+        H1 title = new H1("🍽️ PROFESSIONAL MENU - MODERN STYLE");
+        title.getStyle()
+            .set("color", "white")
+            .set("font-size", "2.5rem")
+            .set("font-weight", "bold")
+            .set("margin", "0 0 10px 0")
+            .set("text-shadow", "2px 2px 4px rgba(0,0,0,0.3)");
+
+        Paragraph subtitle = new Paragraph("🎨 ENHANCED UI TRANSFORMATION - Professional Food Cards with Ratings, Badges & Animations");
+        subtitle.getStyle()
+            .set("color", "rgba(255,255,255,0.9)")
+            .set("font-size", "1.2rem")
+            .set("margin", "0")
+            .set("font-weight", "500");
+
+        headerSection.add(title, subtitle);
+        add(headerSection);
     }
 
     private void createFilters() {
@@ -179,17 +219,22 @@ public class MenuView extends VerticalLayout {
     }
 
     private void createMenuItemCard(FoodItem item) {
+        // PROFESSIONAL MODERN-STYLE FOOD CARD
         Div card = new Div();
         card.addClassNames(
             LumoUtility.Background.BASE,
             LumoUtility.BorderRadius.LARGE,
-            LumoUtility.BoxShadow.SMALL
+            LumoUtility.BoxShadow.LARGE
         );
         card.getStyle()
-            .set("border", "1px solid var(--lumo-contrast-10pct)")
+            .set("border", "3px solid #e23744")
             .set("transition", "all 0.3s ease")
             .set("cursor", "pointer")
-            .set("overflow", "hidden");
+            .set("overflow", "hidden")
+            .set("min-height", "300px")
+            .set("background", "linear-gradient(135deg, #fff5f5 0%, #ffffff 100%)")
+            .set("transform", "scale(1.02)")
+            .set("box-shadow", "0 8px 25px rgba(226, 55, 68, 0.2)");
 
         // Add hover effect
         card.getElement().addEventListener("mouseenter", e -> {
@@ -454,10 +499,33 @@ public class MenuView extends VerticalLayout {
             priceSection.add(price);
         }
 
-        // Add to cart button
+        // Professional Add to Cart button
         Button addToCartButton = new Button("Add to Cart", new Icon(VaadinIcon.CART_O));
-        addToCartButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
-        addToCartButton.addClassNames(LumoUtility.BorderRadius.MEDIUM);
+        addToCartButton.getStyle()
+            .set("background", "linear-gradient(135deg, #e23744 0%, #ff6b35 100%)")
+            .set("color", "white")
+            .set("border", "none")
+            .set("border-radius", "8px")
+            .set("padding", "10px 20px")
+            .set("font-weight", "600")
+            .set("font-size", "14px")
+            .set("text-transform", "uppercase")
+            .set("letter-spacing", "0.5px")
+            .set("transition", "all 0.3s ease")
+            .set("box-shadow", "0 3px 12px rgba(226, 55, 68, 0.3)");
+
+        // Add hover effect
+        addToCartButton.getElement().addEventListener("mouseenter", e ->
+            addToCartButton.getStyle()
+                .set("background", "linear-gradient(135deg, #cb1b28 0%, #e23744 100%)")
+                .set("transform", "translateY(-2px)")
+                .set("box-shadow", "0 5px 16px rgba(226, 55, 68, 0.4)"));
+        addToCartButton.getElement().addEventListener("mouseleave", e ->
+            addToCartButton.getStyle()
+                .set("background", "linear-gradient(135deg, #e23744 0%, #ff6b35 100%)")
+                .remove("transform")
+                .set("box-shadow", "0 3px 12px rgba(226, 55, 68, 0.3)"));
+
         addToCartButton.addClickListener(e -> addToCart(item));
 
         bottomSection.add(priceSection, addToCartButton);
